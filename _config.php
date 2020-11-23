@@ -1,8 +1,11 @@
 <?php
 
+use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
+use SilverStripe\Core\Environment;
 
 // Add a benchmark helper
+
 if (!function_exists('bm')) {
     function bm($cb = null)
     {
@@ -18,16 +21,23 @@ if (!function_exists('d')) {
             return;
         }
 
-        $debugView = \SilverStripe\Dev\Debug::create_debug_view();
+        $req = null;
+        if (Controller::has_curr()) {
+            $req = Controller::curr()->getRequest();
+        }
+        $debugView = \SilverStripe\Dev\Debug::create_debug_view($req);
         // Also show latest object in backtrace
-        foreach (debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT) as $row) {
-            if (!empty($row['object'])) {
-                $args[] = $row['object'];
-                break;
+        if (!Director::is_ajax()) {
+            foreach (debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT) as $row) {
+                if (!empty($row['object'])) {
+                    $args[] = $row['object'];
+                    break;
+                }
             }
         }
         // Show args
         $i = 0;
+        $output = [];
         foreach ($args as $val) {
             echo $debugView->debugVariable($val, \SilverStripe\Dev\Debug::caller(), true, $i);
             $i++;
@@ -42,6 +52,9 @@ if (!function_exists('l')) {
         $priority = 100;
         $extras = func_get_args();
         $message = array_shift($extras);
+        if (!is_string($message)) {
+            $message = json_encode($message);
+        }
         \SilverStripe\Core\Injector\Injector::inst()->get(\Psr\Log\LoggerInterface::class)->log($priority, $message, $extras);
     }
 }
@@ -53,16 +66,30 @@ if (!function_exists('_g')) {
     }
 }
 
+// Timezone setting
+$SS_TIMEZONE = Environment::getEnv('SS_TIMEZONE');
+if ($SS_TIMEZONE) {
+    if (!in_array($SS_TIMEZONE, timezone_identifiers_list())) {
+        throw new Exception("Timezone $SS_TIMEZONE is not valid");
+    }
+    date_default_timezone_set($SS_TIMEZONE);
+}
 
+$SS_SERVERNAME = $_SERVER['SERVER_NAME'] ?? 'localhost';
 if (Director::isDev()) {
     error_reporting(-1);
     ini_set('display_errors', true);
 
     // Enable IDEAnnotator
-    if (!empty($_SERVER['SERVER_NAME']) &&
-        in_array(substr($_SERVER['SERVER_NAME'], strrpos($_SERVER['SERVER_NAME'], '.') + 1), ['dev', 'local', 'localhost'])) {
+    if (in_array(substr($SS_SERVERNAME, strrpos($SS_SERVERNAME, '.') + 1), ['dev', 'local', 'localhost'])) {
         \SilverStripe\Core\Config\Config::modify()->set('SilverLeague\IDEAnnotator\DataObjectAnnotator', 'enabled', true);
+        \SilverStripe\Core\Config\Config::modify()->merge('SilverLeague\IDEAnnotator\DataObjectAnnotator', 'enabled_modules', [
+            'app'
+        ]);
     }
+
+    // Fixes https://github.com/silverleague/silverstripe-ideannotator/issues/122
+    \SilverStripe\Core\Config\Config::modify()->set('SilverLeague\IDEAnnotator\Tests\Team', 'has_many', []);
 }
 
 // When running tests, use SQLite3
@@ -70,7 +97,7 @@ if (Director::isDev()) {
 // Currently, some issue when running test, see pull request
 // @link https://github.com/silverstripe/silverstripe-sqlite3/pull/43
 if (Director::is_cli()) {
-    if (strpos($_SERVER['PHP_SELF'], '/bin/phpunit') !== false) {
+    if (isset($_SERVER['argv'][0]) && $_SERVER['argv'][0] == 'vendor/bin/phpunit') {
         global $databaseConfig;
         if (class_exists(\SilverStripe\SQLite\SQLite3Database::class)) {
             $databaseConfig['type'] = 'SQLite3Database';
@@ -99,5 +126,14 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 // @link https://docs.silverstripe.org/en/4/developer_guides/customising_the_admin_interface/typography/
 \SilverStripe\Forms\HTMLEditor\TinyMCEConfig::get('cms')
     ->addButtonsToLine(1, 'styleselect')
+    ->addButtonsToLine(2, 'anchor')
+    ->enablePlugins('anchor')
     ->setOption('statusbar', false)
     ->setOption('importcss_append', true);
+
+// GraphQL performance
+// See _config/controllers.yml
+// @link https://github.com/silverstripe/silverstripe-graphql/issues/192
+// if (Director::isLive()) {
+//     \SilverStripe\GraphQL\Controller::remove_extension(\SilverStripe\GraphQL\Extensions\IntrospectionProvider::class);
+// }

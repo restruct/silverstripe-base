@@ -1,26 +1,37 @@
 //
 // This is the base file you should include in your theme
 // For a base file for your css theme, please look at sample-theme
+// Import this by using @import "../../../base/sass/theme-kit";
 //
 @import "variables";
+@import "mixins";
+@import "functions";
+@import "lazyload";
+@import "vendor/hamburger/hamburger";
 // @link https://github.com/tgdev/animate-sass
 @import "vendor/animate/animate";
 // bootstrap 4
 @import "vendor/bootstrap/bootstrap";
 // extra components for bootstrap 4
+@import "bootstrap-extras/utils";
 @import "bootstrap-extras/toggle";
 @import "bootstrap-extras/sticky-footer";
 @import "bootstrap-extras/select2";
 @import "bootstrap-extras/grid";
 @import "bootstrap-extras/tab";
+@import "bootstrap-extras/navbar";
+// we should really use svg font if possible, some make this optional
 // @link https://github.com/heimrichhannot/elegant-icons
 @import "vendor/elegant-icons/elegant-icons-sass";
 // components
-@import "components/SocialShareList";
+@import "components/SocialShare";
+@import "components/SocialLinks";
 @import "components/back-to-top";
 @import "components/loader";
+@import "components/cookie-consent";
 // silverstripe
 @import "silverstripe/message";
 @import "silverstripe/parsley";
 @import "silverstripe/Security";
 @import "silverstripe/forms";
+@import "silverstripe/alertify";

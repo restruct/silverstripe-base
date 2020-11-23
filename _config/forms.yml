@@ -2,6 +2,10 @@
 Name: base-forms
 ---
 SilverStripe\Core\Injector\Injector:
+  SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor:
+    class: LeKoala\Base\Forms\GridField\GridFieldRecordConfig
+  #SilverStripe\AssetAdmin\Forms\UploadField:
+  #  class: LeKoala\Base\Forms\SmartUploadField
   SilverStripe\Assets\Upload:
     class: LeKoala\Base\Forms\BaseUpload
   SilverStripe\Forms\DateField:
@@ -9,18 +13,22 @@ SilverStripe\Core\Injector\Injector:
   SilverStripe\Forms\DatetimeField:
     class: LeKoala\Base\Forms\FlatpickrField
     calls:
-      - [setEnableTime, [true]]
-      - [setDisableDescription, [true]]
+      - [setDateTimeOptions]
   SilverStripe\Forms\TimeField:
     class: LeKoala\Base\Forms\FlatpickrField
     calls:
-      - [setNoCalendar, [true]]
+      - [setTimeOptions]
 SilverStripe\Forms\FormField:
   # casting:
     # This makes graphql crash so don't use it
     # Title: 'HTMLFragment' # allow using html in field titles
   extensions:
-    - LeKoala\Base\Forms\Extensions\TooltipExtension
+    - LeKoala\Base\Forms\Extensions\BaseFieldExtension
 SilverStripe\Forms\GridField\GridField:
   extensions:
     - LeKoala\Base\Forms\GridField\GridFieldExtension
+SilverStripe\Versioned\VersionedGridFieldItemRequest:
+  extensions:
+    - LeKoala\Base\Forms\GridField\VersionedGridFieldItemRequestExtension
+LeKoala\Base\Forms\InputMaskDateTimeField:
+  default_input_format: 'auto'

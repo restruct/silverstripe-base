@@ -6,14 +6,42 @@ en:
     MAXRESOLUTION: 'Max resolution: 2048x2048px'
     MAXSIZE: 'Max file size: {size}'
   BaseForm:
+    DOEDIT: 'Save changes'
     DOSUBMIT: Submit
+  BaseMemberExtension:
+    ACCOUNT_DISABLED: 'Your account has been disabled'
+    ACCOUNT_PENDING: 'Your account is currently pending'
+    ADMIN_IP_INVALID: 'Your ip address {address} is not whitelisted for this account level'
+    MEMBER_NOT_LOCKED: 'Member is not locked'
+    MEMBER_UNLOCKED: 'Member unlocked'
+    YOU_NEED_2FA_METHOD: 'Your account needs two factor auth but does not have any available authentication method'
   BaseSecurityAdminExtension:
     LockedMembers: 'Locked Members'
+    LogAlert: 'Last updated on {updated}'
+    LogSize: 'Total size is {size}'
+    Logs: Logs
+    MemberAudit: 'Members audit events'
+    MemberAuditTab: 'Members Audit'
     MembersOnlyGroups: 'Only group members are shown. To add a user to a group, link it from an existing group.'
+    RecentAdminLogins: 'Recent Admin Logins'
     RecentPasswordFailures: 'Recent Password Failures'
     SecurityAudit: 'Security Audit'
+    doClearLogs: 'Clear Logs'
+    doRotateLogs: 'Rotate Logs'
   BootstrapModal:
     Close: Close
+  ContactForm:
+    Company: Company
+    Email: Email
+    Message: Message
+    Name: Name
+    Phone: Phone
+    SEND: 'Send your message'
+    Subject: Subject
+  ContactPage:
+    Address: ADDRESS
+    Email: E-MAIL
+    Phone: PHONE
   ContactPageController:
     ERR_ENTER_EMAIL: 'Enter your e-mail'
     ERR_ENTER_MESSAGE: 'Enter your message'
@@ -32,24 +60,105 @@ en:
     COOKIES_ARE_REQUIRED: 'Cookies are required to use this website'
   CountryDropdownField:
     TITLE: Country
+  DataObjectActionsExtension:
+    CREATEANDCLOSE: 'Create and Close'
+    SAVEANDCLOSE: 'Save and Close'
+  EmbeddableExtension:
+    EMBEDURL: 'Embed from URL'
+  FilePondField:
+    labelFileProcessing: Uploading
+    labelFileProcessingAborted: 'Upload cancelled'
+    labelFileProcessingComplete: 'Upload complete'
+    labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+    labelTapToCancel: 'tap to undo'
   FlatpickrField:
+    NO_DATE_SELECTED: 'No date'
+    NO_TIME_SELECTED: 'No time'
     SELECT_A_DATE: 'Select a date...'
+  FullGridFieldQuickFilter:
+    QUICKLY_FILTER: 'Quickly filter this list by keywords'
+  Global:
+    Address: Address
+    All: All
+    Back: Return
+    CONFIRM_MESSAGE: 'Are you sure?'
+    Company: Company
+    CompanyRegistrationNumber: 'Company Registration Number'
+    ContactInfos: 'Contact details'
+    ContactsSettings: 'Contacts settings'
+    DefaultFromEmail: 'Default From Email'
+    Email: Email
+    EmailFooter: 'Email Footer'
+    EmailSettings: 'Email settings'
+    LegalCourt: 'Legal Court'
+    LegalName: 'Legal Name'
+    'NO': 'No'
+    Name: Name
+    Phone: Phone
+    Subject: Subject
+    UNDEFINED_ERROR: 'Something went wrong'
+    View: View
+    'YES': 'Yes'
+  GridFieldQuickFiltesrs:
+    DO_FILTER: Filter
   NewsItem:
     READ_MORE: 'Read more'
   NewsPage:
     NO_ARTICLES: 'No articles'
   NewsSidebar:
     ARCHIVES: Archives
+    CATEGORIES: Categories
     POPULAR_POSTS: 'Popular posts'
     SEARCH: Search
     TAGS: Tags
+  Page_results:
+    NORESULTS: 'Aucun résultat pour cette recherche.'
+    READMORE: 'Lire plus à propos de ''{Title}''...'
+    YOUSEARCHEDFOR: 'Vous avez cherché ''{Query}'''
+  PasswordHelper:
+    PasswordMinLength: '{minimum} or more characters long'
+    PasswordTests: 'must contain {rules}'
+    RuleDigits: 'one digit'
+    RuleLowercase: 'one lowercase character'
+    RulePunctuation: 'one special character'
+    RuleUppercase: 'one uppercase character'
   PrivacyForm:
     IAGREE: 'I read and I agree with the'
     PLEASEREVIEW: 'Please review the following agreements to continue'
+  SilverStripe\Admin\LeftAndMain:
+    CollapsePanel: 'Collapse panel'
+    ExpandPanel: 'Expand panel'
+    HelpMenu: 'Help menu'
+    MenuToggleAuto: Auto
+    MenuToggleStickyNav: 'Sticky nav'
+    NavigateUp: 'Navigate up a folder'
+    PreviewButton: Preview
+    Version: Version
+  SilverStripe\Admin\ModelAdmin:
+    Title: 'Data Models'
+  SilverStripe\Forms\Form:
+    CSRF_FAILED_MESSAGE: 'There seems to have been a technical problem. Please click the back button, refresh your browser, and try again.'
+    FIELDISREQUIRED: '{name} is required'
   SimpleSearchControllerExtension:
     GO: Go
     SEARCH: Search
     SearchResults: 'Search Results'
+    YouSearchFor: 'You searched for %s'
   SocialExtension:
-    DISCOVER: 'I discovered '
+    DISCOVER: 'I discovered'
     SEE: 'You can see it here :'
+  TwoFactorLoginHandler:
+    ENTER_YOUR_ACCESS_TOKEN: 'Enter your access token'
+    MESSAGE_SENT: 'Your token has been sent to your phone ending with {end}'
+    VALIDATE_TOKEN: 'Validate token'
+    YOUR_TOKEN_IS: 'Your token is {token}'
+  URLSegmentExtension:
+    URLSEGMENT: 'URL Segment'
+  ValidationStatusExtension:
+    APPROVE: Approve
+    APPROVED: Approved
+    DISABLE: Disable
+    DISABLED: Disabled
+    VALIDATION_STATUS_APPROVED: approved
+    VALIDATION_STATUS_DISABLED: disabled
+    VALIDATION_STATUS_PENDING: pending

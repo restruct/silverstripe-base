@@ -11,13 +11,18 @@ SilverStripe\CMS\Model\SiteTree:
   extensions:
     - LeKoala\Base\Extensions\SocialShareExtension
     - LeKoala\Base\Extensions\BasePageExtension
+    #- LeKoala\Base\Extensions\BootstrapPageExtension
 SilverStripe\SiteConfig\SiteConfig:
+  conditional_analytics: true
+  gtag_manager: false
+  use_formspree: false
   extensions:
     - LeKoala\Base\SiteConfig\SiteConfigExtension
+    - LeKoala\Base\SiteConfig\GoogleSiteConfigExtension
     - LeKoala\Base\Extensions\SocialExtension
 SilverStripe\CMS\Controllers\ContentController:
   extensions:
-    - LeKoala\Base\Extensions\SimpleSearchControllerExtension
+    - LeKoala\Base\Controllers\SimpleSearchControllerExtension
 LeKoala\Base\Blocks\Block:
   extensions:
     - LeKoala\Base\Extensions\SortableExtension
@@ -32,9 +37,32 @@ LeKoala\Base\News\NewsItem:
 LeKoala\Base\News\NewsCategory:
   extensions:
     - LeKoala\Base\Extensions\URLSegmentExtension
+LeKoala\Base\Faq\FaqItem:
+  extensions:
+    - LeKoala\Base\Extensions\SortableExtension
+LeKoala\Base\Faq\FaqCategory:
+  extensions:
+    - LeKoala\Base\Extensions\SortableExtension
 LeKoala\Base\Tags\Tag:
   extensions:
     - LeKoala\Base\Extensions\URLSegmentExtension
 SilverStripe\Security\Member:
   extensions:
     - LeKoala\Base\Privacy\PrivacyMemberExtension
+SilverStripe\Control\Email\Email:
+  extensions:
+    - LeKoala\Base\Email\BaseEmailExtension
+LeKoala\Base\Geo\Address:
+  extensions:
+    - LeKoala\Base\Geo\GeoExtension
+---
+Name: base-extensions-versioned
+After:
+  - 'silverstripe/versioned'
+Only:
+  moduleexists:
+    - 'silverstripe/versioned'
+---
+#SilverStripe\Core\Injector\Injector:
+#  SilverStripe\Versioned\RecursivePublishable:
+#    class: LeKoala\Base\Extensions\RecursivePublishable

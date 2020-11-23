@@ -1,0 +1,58 @@
+/*
+Enable this by setting :
+
+LeKoala\Base\Admin\BaseLeftAndMainExtension:
+  dark_theme: true
+
+*/
+.cms-menu {
+    -webkit-box-shadow: inset -1px 0 0 #373E42;
+    box-shadow: inset -1px 0 0 #373E42;
+    background: #20282C;
+}
+
+.cms-menu .cms-panel-content {
+    -webkit-box-shadow: inset -1px 0 0 #373E42;
+    box-shadow: inset -1px 0 0 #373E42;
+}
+
+.cms-menu__list li a {
+    color: #BFC0C0;
+    -webkit-box-shadow: inset -1px 0 0 #373E42;
+    box-shadow: inset -1px 0 0 #373E42;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.cms-menu__list li a:hover,
+.cms-menu__list li a:focus,
+.cms-menu__list li a:active {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cms-menu__list li.current a {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cms-menu .cms-panel-toggle {
+    background: #20282C;
+    border-color: #373E42;
+    -webkit-box-shadow: inset -1px 0 0 #373E42;
+    box-shadow: inset -1px 0 0 #373E42;
+}
+
+.menu__icon {
+    color: #BFC0C0;
+}
+
+.cms-help__toggle {
+    background: #20282C;
+}
+
+.cms-help__links a.cms-help__link, .cms-help__toggle-title {
+    color: #999;
+}
+
+.cms-help__links a.cms-help__link:hover {
+    color: #BFC0C0;
+}

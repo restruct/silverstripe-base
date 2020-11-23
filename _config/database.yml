@@ -18,6 +18,8 @@ Name: base-fieldtypes
 After: '#corefieldtypes'
 ---
 SilverStripe\Core\Injector\Injector:
+  BinaryIP:
+    class: LeKoala\Base\ORM\FieldType\DBBinaryIP
   Color:
     class: LeKoala\Base\ORM\FieldType\DBColor
   Country:
@@ -26,6 +28,10 @@ SilverStripe\Core\Injector\Injector:
     class: LeKoala\Base\ORM\FieldType\DBJson
   Phone:
     class: LeKoala\Base\ORM\FieldType\DBPhone
+  Timezone:
+    class: LeKoala\Base\ORM\FieldType\DBTimezone
+  Website:
+    class: LeKoala\Base\ORM\FieldType\DBWebsite
   NumericVarchar:
     class: LeKoala\Base\ORM\FieldType\DBNumericVarchar
   NiceEnum:
@@ -34,6 +40,10 @@ SilverStripe\Core\Injector\Injector:
     class: LeKoala\Base\ORM\FieldType\DBBetterCurrency
   Decimal:
     class: LeKoala\Base\ORM\FieldType\DBBetterDecimal
+  Percentage:
+    class: LeKoala\Base\ORM\FieldType\DBBetterPercentage
+  Date:
+    class: LeKoala\Base\ORM\FieldType\DBBetterDate
   DBNullableClassName:
     class: LeKoala\Base\ORM\FieldType\DBNullableClassName
   # See DataObjectSchema:492
@@ -41,6 +51,8 @@ SilverStripe\Core\Injector\Injector:
     class: LeKoala\Base\ORM\FieldType\DBBetterForeignKey
   PolymorphicForeignKey:
     class: LeKoala\Base\ORM\FieldType\DBNullablePolymorphicForeignKey
+  UntranslatedVarchar:
+    class: LeKoala\Base\ORM\FieldType\DBUntranslatedVarchar
 ---
 Name: base-searchfilters
 After: '#coresearchfilters'
